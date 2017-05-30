@@ -1,4 +1,5 @@
-.. contents::
+.. contents:: Table of Contents
+
 
 Realtime Plotter
 ----------------
