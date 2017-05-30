@@ -1,0 +1,247 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Real Time Plotter 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head>
+  <body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html#document-index">
+          <span>Real Time Plotter 0.1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>Real Time Plotter 0.1.0 documentation</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        <a class="uplink" href="index.html#document-index">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="welcome-to-real-time-plotter-s-documentation">
+<h1>Welcome to Real Time Plotter’s documentation!<a class="headerlink" href="#welcome-to-real-time-plotter-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<span id="document-readme"></span><div class="section" id="realtime-plotter">
+<h2>Realtime Plotter<a class="headerlink" href="#realtime-plotter" title="Permalink to this headline">¶</a></h2>
+<p>This package provides a simple interface to do realtime plotting using matplotlib.</p>
+<div class="section" id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
+<p>System dependencies:</p>
+<ul class="simple">
+<li>zeromq</li>
+</ul>
+<p>Python dependencies are listed in requirements.txt</p>
+</div>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">IGITUGraz</span><span class="o">/</span><span class="n">RealtimePlotter</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">RealtimePlotter</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<p>It consists of two parts: a <code class="code docutils literal"><span class="pre">PlotRecorder</span></code> and a <code class="code docutils literal"><span class="pre">Plotter</span></code>.</p>
+<p>For any code you have, you can record the values that you want to plot using the <code class="code docutils literal"><span class="pre">PlotRecorder</span></code> as follows:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">realtimeplotter.plotrecorder</span> <span class="k">import</span> <span class="n">PlotRecorder</span>
+<span class="n">plot_recorder</span> <span class="o">=</span> <span class="n">PlotRecorder</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">simulate</span><span class="p">():</span>
+  <span class="o">...</span>
+  <span class="c1"># Your simulation code here</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="n">x_sq</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+  <span class="n">plot_recorder</span><span class="o">.</span><span class="n">record</span><span class="p">(</span><span class="s2">&quot;x_sq&quot;</span><span class="p">,</span> <span class="n">x_sq</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This sends the recorded variable to a ZeroMQ Queue, but otherwise is very low overhead and doesn’t affect your
+simulation, even if you decide not to do realtime plotting for any particular run.</p>
+<p>After the simulation is finished, call <code class="code docutils literal"><span class="pre">plot_recorder.close('x_sq')</span></code> to do a clean shutdown.</p>
+<p>To actually do realtime plotting, you would implement a <code class="code docutils literal"><span class="pre">Plotter</span></code> in a different file that inherits from <code class="code docutils literal"><span class="pre">PlotterBase</span></code>
+as follows:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">YourPlotter</span><span class="p">(</span><span class="n">PlotterBase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Make sure you call the super `init` method. This initializes `self.plt`</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;First initializing plots in thread </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_name</span><span class="p">)</span>
+        <span class="c1"># It is necessary to assign the variable `self.fig` in this init function</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+        <span class="c1"># Your initialization code here</span>
+        <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">plot_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_value</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="c1"># Implements the plotting loop. In this case, it just returns the outcome of `plt.imshow`</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Plotting </span><span class="si">%s</span><span class="s2"> in </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_name</span><span class="p">)</span>
+
+        <span class="c1"># Plot the variable and return a matplotlib.artist.Artist object</span>
+</pre></div>
+</div>
+<p>and start it with:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">PlotMandelBrot</span><span class="p">(</span><span class="s1">&#39;x_sq&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>You can find an example in the <code class="code docutils literal"><span class="pre">example</span></code> directory.</p>
+<p>To run it, do <code class="code docutils literal"><span class="pre">cd</span> <span class="pre">example;</span> <span class="pre">./run.sh</span></code></p>
+<p>It runs the two files <code class="code docutils literal"><span class="pre">example/simulation.py</span></code> and <code class="code docutils literal"><span class="pre">example/plot.py</span></code> and shows the fractal generation in realtime.</p>
+<p>The animation will look like this:</p>
+<img alt="_images/animation.gif" src="_images/animation.gif" />
+</div>
+</div>
+<span id="document-realtimeplotter"></span><div class="section" id="realtimeplotter-package">
+<h2>RealtimePlotter package<a class="headerlink" href="#realtimeplotter-package" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="realtimeplotter.plotrecorder.PlotRecorder">
+<em class="property">class </em><code class="descclassname">realtimeplotter.plotrecorder.</code><code class="descname">PlotRecorder</code><span class="sig-paren">(</span><em>port=5155</em><span class="sig-paren">)</span><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotRecorder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotRecorder.close">
+<code class="descname">close</code><span class="sig-paren">(</span><em>var_name</em><span class="sig-paren">)</span><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotRecorder.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call this method for each variable name <cite>var_name</cite> to clean up the plotting process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>var_name</strong> – Name of variable to clean up.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotRecorder.record">
+<code class="descname">record</code><span class="sig-paren">(</span><em>var_name</em>, <em>var_value</em><span class="sig-paren">)</span><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotRecorder.record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call this method each time you want to record a variable with name <cite>var_name</cite> and value <cite>var_value</cite>.
+Usually, there is one plot for each <cite>var_name</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>var_name</strong> – Name of variable to record</li>
+<li><strong>var_value</strong> – Value of variable to record</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="realtimeplotter.plotrecorder.PlotterBase">
+<em class="property">class </em><code class="descclassname">realtimeplotter.plotrecorder.</code><code class="descname">PlotterBase</code><span class="sig-paren">(</span><em>var_name</em>, <em>port=5155</em><span class="sig-paren">)</span><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">multiprocessing.context.Process</span></code></p>
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotterBase.init">
+<code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is called after a new process has been created, and should be used to initialize everything that
+needs to be initialized in the new process (i.e. after the fork).
+Override this method to create fig, ax etc. as needed</p>
+<p><strong>NOTE:</strong> This method SHOULD assign the created figure to the class variable <cite>self.fig</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotterBase.loop">
+<code class="descname">loop</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase.loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function that runs the loop. At each call, it listens for a new message of the appropriate topic/var_name
+(given in the constructor). When it receives the message, it calls <a class="reference internal" href="#realtimeplotter.plotrecorder.PlotterBase.plot_loop" title="realtimeplotter.plotrecorder.PlotterBase.plot_loop"><code class="xref py py-meth docutils literal"><span class="pre">plot_loop()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>i</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The plot iteration passed in by the matplotlib animation api call</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotterBase.plot_loop">
+<code class="descname">plot_loop</code><span class="sig-paren">(</span><em>var_value</em>, <em>i</em><span class="sig-paren">)</span><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase.plot_loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is called each time the plot needs to be updated. This should return an iterable of matplotlib
+<code class="xref py py-class docutils literal"><span class="pre">matplotlib.artist.Artist</span></code></p>
+<p><strong>NOTE:</strong> This method should only use the local variables <cite>self.plt</cite> and <cite>self.fig</cite> etc. for plotting. Do not use
+global variables, since this can cause problems due to the multiprocessing being used (and matplotlib’s limited
+support for it)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>var_value</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><em>object</em></a>) – The value of the object recorded using the <a class="reference internal" href="#realtimeplotter.plotrecorder.PlotRecorder.record" title="realtimeplotter.plotrecorder.PlotRecorder.record"><code class="xref py py-meth docutils literal"><span class="pre">PlotRecorder.record()</span></code></a> call.</li>
+<li><strong>i</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The iteration number of the plot</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An iterable of <code class="xref py py-class docutils literal"><span class="pre">matplotlib.artist.Artist</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotterBase.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Entry point for the realtime plotting when started as a separate process. This starts the loop</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        <a class="uplink" href="index.html#document-index">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Anand S.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.2.
+    </div>
+  </body>
+</html>
