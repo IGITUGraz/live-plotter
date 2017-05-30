@@ -99,4 +99,4 @@ It runs the two files :code:`example/simulation.py` and :code:`example/plot.py` 
 
 The animation will look like this:
 
-.. image:: example/animation.gif
+.. image:: _static/animation.gif
