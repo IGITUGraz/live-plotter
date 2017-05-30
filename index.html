@@ -67,6 +67,35 @@
 </pre></div>
 </div>
 </div>
+<div class="section" id="notes-about-backends">
+<h3>Notes about backends<a class="headerlink" href="#notes-about-backends" title="Permalink to this headline">¶</a></h3>
+<p>This package has been tested with the <em>TkAgg</em> backend on linux and <em>Gtk3Agg</em> backend on macOS, but none of the other
+combinations.</p>
+<p>To set the default backend on linux, edit <code class="code docutils literal"><span class="pre">$HOME/.config/matplotlib/matplotlibrc</span></code> and add the following line:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="p">:</span> <span class="n">tkagg</span>
+</pre></div>
+</div>
+<p>This backend Requires tkinter to be installed – the <code class="code docutils literal"><span class="pre">python3-tk</span></code> package on Ubuntu/Debian</p>
+<p>To set the default backend on macOS, edit <code class="code docutils literal"><span class="pre">$HOME/.matplotlib/matplotlibrc</span></code> and add the following line:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="p">:</span> <span class="n">gtk3agg</span>
+</pre></div>
+</div>
+<p>This backed requires the pygobject package to be installed – the <code class="code docutils literal"><span class="pre">py36-gobject3</span></code> package on MacPorts. (Repalce
+py36 with your python3 version)</p>
+<p>See <a class="footnote-reference" href="#id3" id="id1">[1]</a> and <a class="footnote-reference" href="#id4" id="id2">[2]</a> for more information</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://matplotlib.org/faq/usage_faq.html#what-is-a-backend">http://matplotlib.org/faq/usage_faq.html#what-is-a-backend</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://matplotlib.org/faq/virtualenv_faq.html">http://matplotlib.org/faq/virtualenv_faq.html</a></td></tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="usage">
 <h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>It consists of two parts: a <code class="code docutils literal"><span class="pre">PlotRecorder</span></code> and a <code class="code docutils literal"><span class="pre">Plotter</span></code>.</p>
