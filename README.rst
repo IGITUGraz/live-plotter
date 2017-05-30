@@ -1,8 +1,9 @@
-.. contents:: Table of Contents
-
-
 Realtime Plotter
 ----------------
+
+.. contents::  Table of Contents
+
+
 
 This package provides a simple interface to do realtime plotting using matplotlib.
 
