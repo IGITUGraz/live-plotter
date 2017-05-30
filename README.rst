@@ -3,7 +3,7 @@ Realtime Plotter
 
 This package provides a simple interface to do realtime plotting using matplotlib.
 
-Detailed documentation here: 
+Detailed documentation here:
 https://anandtrex.github.io/RealtimePlotter/
 
 
@@ -13,6 +13,7 @@ Requirements
 System dependencies:
 
 * zeromq
+* tkinter
 
 Python dependencies are listed in requirements.txt
 
@@ -61,9 +62,9 @@ as follows:
 .. code:: python
 
     class YourPlotter(PlotterBase):
-        def init(self):
+        def init(self, var_name):
             # Make sure you call the super `init` method. This initializes `self.plt`
-            super().init()
+            super().init(var_name)
 
             logger.info("First initializing plots in thread %s", self.entity_name)
             # It is necessary to assign the variable `self.fig` in this init function
@@ -88,7 +89,7 @@ and start it with:
 
 .. code:: python
 
-    PlotMandelBrot('x_sq').start()
+    YourPlotter('x_sq').start()
 
 
 Example
