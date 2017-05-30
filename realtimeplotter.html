@@ -1,0 +1,169 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RealtimePlotter package &#8212; Real Time Plotter 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Realtime Plotter" href="readme.html" /> 
+  </head>
+  <body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>Real Time Plotter 0.1.0 documentation</span></a></h1>
+        <h2 class="heading"><span>RealtimePlotter package</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      
+        <p>
+        «&#160;&#160;<a href="readme.html">Realtime Plotter</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="realtimeplotter-package">
+<h1>RealtimePlotter package<a class="headerlink" href="#realtimeplotter-package" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="realtimeplotter.plotrecorder.PlotRecorder">
+<em class="property">class </em><code class="descclassname">realtimeplotter.plotrecorder.</code><code class="descname">PlotRecorder</code><span class="sig-paren">(</span><em>port=5155</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/realtimeplotter/plotrecorder.html#PlotRecorder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotRecorder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotRecorder.close">
+<code class="descname">close</code><span class="sig-paren">(</span><em>var_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/realtimeplotter/plotrecorder.html#PlotRecorder.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotRecorder.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call this method for each variable name <cite>var_name</cite> to clean up the plotting process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>var_name</strong> – Name of variable to clean up.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotRecorder.record">
+<code class="descname">record</code><span class="sig-paren">(</span><em>var_name</em>, <em>var_value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/realtimeplotter/plotrecorder.html#PlotRecorder.record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotRecorder.record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call this method each time you want to record a variable with name <cite>var_name</cite> and value <cite>var_value</cite>.
+Usually, there is one plot for each <cite>var_name</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>var_name</strong> – Name of variable to record</li>
+<li><strong>var_value</strong> – Value of variable to record</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="realtimeplotter.plotrecorder.PlotterBase">
+<em class="property">class </em><code class="descclassname">realtimeplotter.plotrecorder.</code><code class="descname">PlotterBase</code><span class="sig-paren">(</span><em>var_name</em>, <em>port=5155</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/realtimeplotter/plotrecorder.html#PlotterBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">multiprocessing.context.Process</span></code></p>
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotterBase.init">
+<code class="descname">init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/realtimeplotter/plotrecorder.html#PlotterBase.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is called after a new process has been created, and should be used to initialize everything that
+needs to be initialized in the new process (i.e. after the fork).
+Override this method to create fig, ax etc. as needed</p>
+<p><strong>NOTE:</strong> This method SHOULD assign the created figure to the class variable <cite>self.fig</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotterBase.loop">
+<code class="descname">loop</code><span class="sig-paren">(</span><em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/realtimeplotter/plotrecorder.html#PlotterBase.loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase.loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>The function that runs the loop. At each call, it listens for a new message of the appropriate topic/var_name
+(given in the constructor). When it receives the message, it calls <a class="reference internal" href="#realtimeplotter.plotrecorder.PlotterBase.plot_loop" title="realtimeplotter.plotrecorder.PlotterBase.plot_loop"><code class="xref py py-meth docutils literal"><span class="pre">plot_loop()</span></code></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>i</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The plot iteration passed in by the matplotlib animation api call</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotterBase.plot_loop">
+<code class="descname">plot_loop</code><span class="sig-paren">(</span><em>var_value</em>, <em>i</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/realtimeplotter/plotrecorder.html#PlotterBase.plot_loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase.plot_loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is called each time the plot needs to be updated. This should return an iterable of matplotlib
+<code class="xref py py-class docutils literal"><span class="pre">matplotlib.artist.Artist</span></code></p>
+<p><strong>NOTE:</strong> This method should only use the local variables <cite>self.plt</cite> and <cite>self.fig</cite> etc. for plotting. Do not use
+global variables, since this can cause problems due to the multiprocessing being used (and matplotlib’s limited
+support for it)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>var_value</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><em>object</em></a>) – The value of the object recorded using the <a class="reference internal" href="#realtimeplotter.plotrecorder.PlotRecorder.record" title="realtimeplotter.plotrecorder.PlotRecorder.record"><code class="xref py py-meth docutils literal"><span class="pre">PlotRecorder.record()</span></code></a> call.</li>
+<li><strong>i</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) – The iteration number of the plot</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An iterable of <code class="xref py py-class docutils literal"><span class="pre">matplotlib.artist.Artist</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="realtimeplotter.plotrecorder.PlotterBase.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/realtimeplotter/plotrecorder.html#PlotterBase.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#realtimeplotter.plotrecorder.PlotterBase.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Entry point for the realtime plotting when started as a separate process. This starts the loop</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      
+        <p>
+        «&#160;&#160;<a href="readme.html">Realtime Plotter</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Anand S.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.2.
+    </div>
+  </body>
+</html>
