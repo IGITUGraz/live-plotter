@@ -2,10 +2,6 @@ import logging
 import pickle
 from multiprocessing import Process, Event, current_process
 
-import matplotlib as mpl
-
-# NOTE: Currently only tested with the `tkagg` backend
-mpl.use('tkagg')
 import matplotlib.animation as animation
 
 import zmq

@@ -35,8 +35,6 @@ class PlotMandelBrot(PlotterBase):
         else:
             self.im.set_array(divtime)
 
-        self.plt.savefig('gif/plot{:03d}.png'.format(i))
-
         return self.im,
 
 
