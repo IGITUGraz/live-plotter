@@ -1,5 +1,5 @@
-RealtimePlotter package
-=======================
+RealtimePlotter API Reference
+=============================
 
 .. autoclass:: realtimeplotter.plotrecorder.PlotRecorder
     :members:
