@@ -3,6 +3,9 @@ Realtime Plotter
 
 This package provides a simple interface to do realtime plotting using matplotlib.
 
+Detailed documenation here: 
+https://anandtrex.github.io/RealtimePlotter/
+
 
 Requirements
 ************
@@ -101,7 +104,3 @@ The animation will look like this:
 
 .. image:: _static/animation.gif
 
-Additional Documentation
-************************
-
-https://anandtrex.github.io/RealtimePlotter/
