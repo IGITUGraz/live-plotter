@@ -17,81 +17,85 @@ Python dependencies are listed in requirements.txt
 Installation
 ************
 
-```
-git clone git@github.com:IGITUGraz/RealtimePlotter.git
-cd RealtimePlotter
-pip install -r requirements.txt
-python3 setup.py install
-```
+.. code:: bash
+
+    git clone git@github.com:IGITUGraz/RealtimePlotter.git
+    cd RealtimePlotter
+    pip install -r requirements.txt
+    python3 setup.py install
+
 
 Usage
 *****
 
-It consists of two parts: a `PlotRecorder` and a `Plotter`.
+It consists of two parts: a :code:`PlotRecorder` and a :code:`Plotter`.
 
-For any code you have, you can record the values that you want to plot using the `PlotRecorder` as follows:
+For any code you have, you can record the values that you want to plot using the :code:`PlotRecorder` as follows:
 
-```
-from realtimeplotter.plotrecorder import PlotRecorder
-plot_recorder = PlotRecorder()
+.. code:: python
+
+    from realtimeplotter.plotrecorder import PlotRecorder
+    plot_recorder = PlotRecorder()
 
 
-def simulate():
-  ...
-  # Your simulation code here
-  x = ...
-  x_sq = x**2
-  plot_recorder.record("x_sq", x_sq)
+    def simulate():
+      ...
+      # Your simulation code here
+      x = ...
+      x_sq = x**2
+      plot_recorder.record("x_sq", x_sq)
 
-```
+
 
 This sends the recorded variable to a ZeroMQ Queue, but otherwise is very low overhead and doesn't affect your
 simulation, even if you decide not to do realtime plotting for any particular run.
 
-After the simulation is finished, call `plot_recorder.close('x_sq')` to do a clean shutdown.
+After the simulation is finished, call :code:`plot_recorder.close('x_sq')` to do a clean shutdown.
 
-To actually do realtime plotting, you would implement a `Plotter` in a different file that inherits from `PlotterBase`
+To actually do realtime plotting, you would implement a :code:`Plotter` in a different file that inherits from :code:`PlotterBase`
 as follows:
 
-```
-class YourPlotter(PlotterBase):
-    def init(self):
-        # Make sure you call the super `init` method. This initializes `self.plt`
-        super().init()
+.. code:: python
 
-        logger.info("First initializing plots in thread %s", self.entity_name)
-        # It is necessary to assign the variable `self.fig` in this init function
+    class YourPlotter(PlotterBase):
+        def init(self):
+            # Make sure you call the super `init` method. This initializes `self.plt`
+            super().init()
 
-        self.fig = self.plt.figure()
+            logger.info("First initializing plots in thread %s", self.entity_name)
+            # It is necessary to assign the variable `self.fig` in this init function
 
-        # Your initialization code here
-        ...
-        self.var_list = []
+            self.fig = self.plt.figure()
 
-        return self
+            # Your initialization code here
+            ...
+            self.var_list = []
 
-    def plot_loop(self, var_value, i):
-        # Implements the plotting loop. In this case, it just returns the outcome of `plt.imshow`
-        logger.debug("Plotting %s in %s", self.var_name, self.entity_name)
+            return self
 
-        # Plot the variable and return a matplotlib.artist.Artist object
+        def plot_loop(self, var_value, i):
+            # Implements the plotting loop. In this case, it just returns the outcome of `plt.imshow`
+            logger.debug("Plotting %s in %s", self.var_name, self.entity_name)
 
-```
+            # Plot the variable and return a matplotlib.artist.Artist object
+
+
 
 and start it with:
 
-```
-PlotMandelBrot('x_sq').start()
-```
+.. code:: python
+
+    PlotMandelBrot('x_sq').start()
+
 
 Example
 *******
 
-You can find an example in the `example` directory.
+You can find an example in the :code:`example` directory.
 
-To run it, do `cd example; ./run.sh`
+To run it, do :code:`cd example; ./run.sh`
 
-It runs the two files `example/simulation.py` and `example/plot.py` and shows the fractal generation in realtime.
+It runs the two files :code:`example/simulation.py` and :code:`example/plot.py` and shows the fractal generation in realtime.
 
 The animation will look like this:
 
