@@ -40,7 +40,8 @@ class PlotRecorder:
         :param var_name: Name of variable to record
         :param var_value: Value of variable to record
         """
-        assert var_value != SENTINEL, "You cannot record a value {} since this conflicts with the internal SENTINEL string"
+        assert not isinstance(var_value, type(SENTINEL)) or var_value != SENTINEL,\
+                "You cannot record a value {} since this conflicts with the internal SENTINEL string"
         topic = pickle.dumps(var_name, protocol=pickle.HIGHEST_PROTOCOL)
         messagedata = pickle.dumps(var_value, protocol=pickle.HIGHEST_PROTOCOL)
         self.socket.send_multipart([topic, messagedata])
@@ -130,7 +131,7 @@ class PlotterBase(Process):
             plogger.debug("%d", i)
             var_value = pickle.loads(self.socket.recv_multipart()[1])
             plogger.debug("Received value")
-            if var_value == SENTINEL:
+            if isinstance(var_value, type(SENTINEL)) and var_value == SENTINEL:
                 self._exit.set()
             else:
                 return self.plot_loop(var_value, i)
