@@ -1,3 +1,5 @@
+.. contents::
+
 Realtime Plotter
 ----------------
 
