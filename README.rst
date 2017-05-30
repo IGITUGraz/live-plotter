@@ -3,7 +3,7 @@ Realtime Plotter
 
 This package provides a simple interface to do realtime plotting using matplotlib.
 
-Detailed documenation here: 
+Detailed documentation here: 
 https://anandtrex.github.io/RealtimePlotter/
 
 
