@@ -28,6 +28,38 @@ Installation
     python3 setup.py install
 
 
+Notes about backends
+********************
+
+This package has been tested with the *TkAgg* backend on linux and *Gtk3Agg* backend on macOS, but none of the other
+combinations.
+
+To set the default backend on linux, edit :code:`$HOME/.config/matplotlib/matplotlibrc` and add the following line:
+
+.. code::
+
+    backend : tkagg
+
+This backend Requires tkinter to be installed -- the :code:`python3-tk` package on Ubuntu/Debian
+
+
+
+To set the default backend on macOS, edit :code:`$HOME/.matplotlib/matplotlibrc` and add the following line:
+
+.. code::
+
+    backend : gtk3agg
+
+This backed requires the pygobject package to be installed -- the :code:`py36-gobject3` package on MacPorts. (Repalce
+py36 with your python3 version)
+
+
+See [#]_ and [#]_ for more information
+
+.. [#] http://matplotlib.org/faq/usage_faq.html#what-is-a-backend
+.. [#] http://matplotlib.org/faq/virtualenv_faq.html
+
+
 Usage
 *****
 
