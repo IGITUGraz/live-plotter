@@ -13,7 +13,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Realtimeplotter.  If not, see <http://www.gnu.org/licenses/>.
+# along with RealtimePlotter.  If not, see <http://www.gnu.org/licenses/>.
 #
 # For more information see: https://github.com/anandtrex/RealtimePlotter
 
