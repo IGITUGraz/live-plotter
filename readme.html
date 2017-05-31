@@ -159,6 +159,7 @@
 <p>System dependencies:</p>
 <ul class="simple">
 <li>zeromq</li>
+<li>tkinter</li>
 </ul>
 <p>Python dependencies are listed in requirements.txt</p>
 </div>
@@ -222,9 +223,9 @@ simulation, even if you decide not to do realtime plotting for any particular ru
 <p>To actually do realtime plotting, you would implement a <code class="code docutils literal"><span class="pre">Plotter</span></code> in a different file that inherits from <code class="code docutils literal"><span class="pre">PlotterBase</span></code>
 as follows:</p>
 <div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">YourPlotter</span><span class="p">(</span><span class="n">PlotterBase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_name</span><span class="p">):</span>
         <span class="c1"># Make sure you call the super `init` method. This initializes `self.plt`</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">var_name</span><span class="p">)</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;First initializing plots in thread </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_name</span><span class="p">)</span>
         <span class="c1"># It is necessary to assign the variable `self.fig` in this init function</span>
@@ -245,7 +246,7 @@ as follows:</p>
 </pre></div>
 </div>
 <p>and start it with:</p>
-<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">PlotMandelBrot</span><span class="p">(</span><span class="s1">&#39;x_sq&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">YourPlotter</span><span class="p">(</span><span class="s1">&#39;x_sq&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
