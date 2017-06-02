@@ -26,13 +26,13 @@ def get_requirements(filename):
 
 requirements, dependency_links = get_requirements('requirements.txt')
 setup(
-    name="Realtime Plotter",
+    name="Live Plotter",
     version="0.1.0",
-    packages=['realtimeplotter'],
+    packages=['liveplotter'],
     author="Anand Subramoney",
     author_email="anand@igi.tugraz.at",
-    description="This module provides the library to do realtime plotting with matplotlib",
+    description="This module provides the library to do live plotting with matplotlib",
     install_requires=requirements,
-    provides=['realtimeplotter'],
+    provides=['liveplotter'],
     dependency_links=dependency_links,
 )

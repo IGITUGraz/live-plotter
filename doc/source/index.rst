@@ -11,5 +11,5 @@ Welcome to Real Time Plotter's documentation!
    :caption: Contents:
 
    readme
-   realtimeplotter
+   liveplotter
 

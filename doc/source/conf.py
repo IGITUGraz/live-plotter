@@ -107,7 +107,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'RealTimePlotterdoc'
+htmlhelp_basename = 'live-plotter-doc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -134,7 +134,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'RealTimePlotter.tex', 'Real Time Plotter Documentation',
+    (master_doc, 'live-plotter.tex', 'Real Time Plotter Documentation',
      'Anand S', 'manual'),
 ]
 
@@ -144,7 +144,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'realtimeplotter', 'Real Time Plotter Documentation',
+    (master_doc, 'liveplotter', 'Real Time Plotter Documentation',
      [author], 1)
 ]
 
@@ -155,8 +155,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'RealTimePlotter', 'Real Time Plotter Documentation',
-     author, 'RealTimePlotter', 'One line description of project.',
+    (master_doc, 'live-plotter', 'Real Time Plotter Documentation',
+     author, 'live-plotter', 'One line description of project.',
      'Miscellaneous'),
 ]
 

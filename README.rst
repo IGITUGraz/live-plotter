@@ -1,14 +1,14 @@
-Realtime Plotter
-----------------
+Live Plotter
+------------
 
 .. contents::  Table of Contents
 
 
 
-This package provides a simple interface to do realtime plotting using matplotlib.
+This package provides a simple interface to do live plotting using matplotlib.
 
 Detailed documentation here:
-https://anandtrex.github.io/RealtimePlotter/
+https://anandtrex.github.io/live-plotter/
 
 
 Requirements
@@ -27,8 +27,8 @@ Installation
 
 .. code:: bash
 
-    git clone git@github.com:IGITUGraz/RealtimePlotter.git
-    cd RealtimePlotter
+    git clone git@github.com:IGITUGraz/live-plotter.git
+    cd live-plotter
     pip install -r requirements.txt
     python3 setup.py install
 
@@ -74,7 +74,7 @@ For any code you have, you can record the values that you want to plot using the
 
 .. code:: python
 
-    from realtimeplotter.plotrecorder import PlotRecorder
+    from liveplotter.plotrecorder import PlotRecorder
     plot_recorder = PlotRecorder()
 
 
@@ -88,11 +88,11 @@ For any code you have, you can record the values that you want to plot using the
 
 
 This sends the recorded variable to a ZeroMQ Queue, but otherwise is very low overhead and doesn't affect your
-simulation, even if you decide not to do realtime plotting for any particular run.
+simulation, even if you decide not to do live plotting for any particular run.
 
 After the simulation is finished, call :code:`plot_recorder.close('x_sq')` to do a clean shutdown.
 
-To actually do realtime plotting, you would implement a :code:`Plotter` in a different file that inherits from :code:`PlotterBase`
+To actually do liv plotting, you would implement a :code:`Plotter` in a different file that inherits from :code:`PlotterBase`
 as follows:
 
 .. code:: python
@@ -135,7 +135,7 @@ You can find an example in the :code:`example` directory.
 
 To run it, do :code:`cd example; ./run.sh`
 
-It runs the two files :code:`example/simulation.py` and :code:`example/plot.py` and shows the fractal generation in realtime.
+It runs the two files :code:`example/simulation.py` and :code:`example/plot.py` and shows the fractal generation live.
 
 The animation will look like this:
 

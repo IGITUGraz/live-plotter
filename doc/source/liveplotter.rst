@@ -1,13 +1,13 @@
-RealtimePlotter API Reference
+live-plotter API Reference
 =============================
 
-.. autoclass:: realtimeplotter.plotrecorder.PlotRecorder
+.. autoclass:: liveplotter.plotrecorder.PlotRecorder
     :members:
     :undoc-members:
     :show-inheritance:
 
 
-.. autoclass:: realtimeplotter.plotrecorder.PlotterBase
+.. autoclass:: liveplotter.plotrecorder.PlotterBase
     :members:
     :undoc-members:
     :show-inheritance:
