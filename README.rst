@@ -8,7 +8,7 @@ Live Plotter
 This package provides a simple interface to do live plotting using matplotlib.
 
 Detailed documentation here:
-https://anandtrex.github.io/live-plotter/
+https://igitugraz.github.io/live-plotter/
 
 
 Requirements
