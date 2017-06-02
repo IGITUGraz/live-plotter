@@ -8,5 +8,5 @@
 # accessed from `simulation.py` and `plot.py`. If the package was installed using setup.py, this is not needed.
 export PYTHONPATH=..:$PYTHONPATH
 
-python3 -u plot.py &
-python3 -u simulation.py &
+python -u plot.py &
+python -u simulation.py &

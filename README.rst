@@ -10,6 +10,7 @@ This package provides a simple interface to do live plotting using matplotlib.
 Detailed documentation here:
 https://igitugraz.github.io/live-plotter/
 
+Supports Python 2.7+ and Python 3.2+
 
 Requirements
 ************
@@ -21,7 +22,6 @@ System dependencies:
 
 Python dependencies are listed in requirements.txt
 
-
 Installation
 ************
 
@@ -29,8 +29,9 @@ Installation
 
     git clone git@github.com:IGITUGraz/live-plotter.git
     cd live-plotter
+    # Use pip3 and python3 to use Python 3.x
     pip install -r requirements.txt
-    python3 setup.py install
+    python setup.py install
 
 
 Notes about backends
@@ -45,7 +46,7 @@ To set the default backend on linux, edit :code:`$HOME/.config/matplotlib/matplo
 
     backend : tkagg
 
-This backend Requires tkinter to be installed -- the :code:`python3-tk` package on Ubuntu/Debian
+This backend Requires tkinter to be installed -- the :code:`python-tk` ( :code:`python3-tk`) package on Ubuntu/Debian
 
 
 
@@ -55,8 +56,8 @@ To set the default backend on macOS, edit :code:`$HOME/.matplotlib/matplotlibrc`
 
     backend : gtk3agg
 
-This backed requires the pygobject package to be installed -- the :code:`py36-gobject3` package on MacPorts. (Repalce
-py36 with your python3 version)
+This backed requires the pygobject package to be installed -- the :code:`py27-gobject3` ( :code:`py36-gobject3` --
+repalce py36 with your python3 version) package on MacPorts.
 
 
 See [#]_ and [#]_ for more information

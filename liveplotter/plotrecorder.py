@@ -17,6 +17,14 @@
 #
 # For more information see: https://github.com/anandtrex/live-plotter
 
+from __future__ import unicode_literals
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
+from builtins import super
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
 import logging
 import pickle
 from multiprocessing import Process, Event, current_process
@@ -32,7 +40,7 @@ PORT = 5155
 SENTINEL = 'SENTINEL'
 
 
-class PlotRecorder:
+class PlotRecorder(object):
     def __init__(self, port=PORT):
         """
         This is a ZMQ publisher
