@@ -18,7 +18,6 @@ Requirements
 System dependencies:
 
 * zeromq
-* tkinter
 
 Python dependencies are listed in requirements.txt
 
@@ -46,7 +45,7 @@ To set the default backend on linux, edit :code:`$HOME/.config/matplotlib/matplo
 
     backend : tkagg
 
-This backend Requires tkinter to be installed -- the :code:`python-tk` ( :code:`python3-tk`) package on Ubuntu/Debian
+This backend requires tkinter to be installed -- the :code:`python-tk` ( :code:`python3-tk`) package on Ubuntu/Debian
 
 
 
@@ -56,8 +55,8 @@ To set the default backend on macOS, edit :code:`$HOME/.matplotlib/matplotlibrc`
 
     backend : gtk3agg
 
-This backed requires the pygobject package to be installed -- the :code:`py27-gobject3` ( :code:`py36-gobject3` --
-repalce py36 with your python3 version) package on MacPorts.
+This backend requires the pygobject package to be installed -- the :code:`py27-gobject3` ( :code:`py36-gobject3` --
+replace py36 with your python3 version) package on MacPorts.
 
 
 See [#]_ and [#]_ for more information
@@ -93,7 +92,7 @@ simulation, even if you decide not to do live plotting for any particular run.
 
 After the simulation is finished, call :code:`plot_recorder.close('x_sq')` to do a clean shutdown.
 
-To actually do liv plotting, you would implement a :code:`Plotter` in a different file that inherits from :code:`PlotterBase`
+To actually do live plotting, you would implement a :code:`Plotter` in a different file that inherits from :code:`PlotterBase`
 as follows:
 
 .. code:: python
@@ -122,7 +121,7 @@ as follows:
 
 
 
-and start it with:
+And start it with:
 
 .. code:: python
 
