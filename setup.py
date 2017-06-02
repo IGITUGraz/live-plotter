@@ -27,7 +27,7 @@ def get_requirements(filename):
 requirements, dependency_links = get_requirements('requirements.txt')
 setup(
     name="Live Plotter",
-    version="0.1.0",
+    version="0.2.0",
     packages=['liveplotter'],
     author="Anand Subramoney",
     author_email="anand@igi.tugraz.at",
