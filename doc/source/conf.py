@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Real Time Plotter documentation build configuration file, created by
+# Live Plotter documentation build configuration file, created by
 # sphinx-quickstart on Tue May 30 19:41:00 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -51,7 +51,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Real Time Plotter'
+project = 'Live Plotter'
 copyright = '2017, Anand S'
 author = 'Anand S'
 
@@ -134,7 +134,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'live-plotter.tex', 'Real Time Plotter Documentation',
+    (master_doc, 'live-plotter.tex', 'Live Plotter Documentation',
      'Anand S', 'manual'),
 ]
 
@@ -144,7 +144,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'liveplotter', 'Real Time Plotter Documentation',
+    (master_doc, 'liveplotter', 'Live Plotter Documentation',
      [author], 1)
 ]
 
@@ -155,7 +155,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'live-plotter', 'Real Time Plotter Documentation',
+    (master_doc, 'live-plotter', 'Live Plotter Documentation',
      author, 'live-plotter', 'One line description of project.',
      'Miscellaneous'),
 ]
