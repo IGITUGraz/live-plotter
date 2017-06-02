@@ -154,12 +154,12 @@
 <p>This package provides a simple interface to do live plotting using matplotlib.</p>
 <p>Detailed documentation here:
 <a class="reference external" href="https://igitugraz.github.io/live-plotter/">https://igitugraz.github.io/live-plotter/</a></p>
+<p>Supports Python 2.7+ and Python 3.2+</p>
 <div class="section" id="requirements">
 <h2><a class="toc-backref" href="#id6">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>System dependencies:</p>
 <ul class="simple">
 <li>zeromq</li>
-<li>tkinter</li>
 </ul>
 <p>Python dependencies are listed in requirements.txt</p>
 </div>
@@ -167,8 +167,9 @@
 <h2><a class="toc-backref" href="#id7">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">IGITUGraz</span><span class="o">/</span><span class="n">live</span><span class="o">-</span><span class="n">plotter</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">live</span><span class="o">-</span><span class="n">plotter</span>
+<span class="c1"># Use pip3 and python3 to use Python 3.x</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 </div>
@@ -180,13 +181,13 @@ combinations.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="p">:</span> <span class="n">tkagg</span>
 </pre></div>
 </div>
-<p>This backend Requires tkinter to be installed – the <code class="code docutils literal"><span class="pre">python3-tk</span></code> package on Ubuntu/Debian</p>
+<p>This backend requires tkinter to be installed – the <code class="code docutils literal"><span class="pre">python-tk</span></code> ( <code class="code docutils literal"><span class="pre">python3-tk</span></code>) package on Ubuntu/Debian</p>
 <p>To set the default backend on macOS, edit <code class="code docutils literal"><span class="pre">$HOME/.matplotlib/matplotlibrc</span></code> and add the following line:</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="p">:</span> <span class="n">gtk3agg</span>
 </pre></div>
 </div>
-<p>This backed requires the pygobject package to be installed – the <code class="code docutils literal"><span class="pre">py36-gobject3</span></code> package on MacPorts. (Repalce
-py36 with your python3 version)</p>
+<p>This backend requires the pygobject package to be installed – the <code class="code docutils literal"><span class="pre">py27-gobject3</span></code> ( <code class="code docutils literal"><span class="pre">py36-gobject3</span></code> –
+replace py36 with your python3 version) package on MacPorts.</p>
 <p>See <a class="footnote-reference" href="#id3" id="id1">[1]</a> and <a class="footnote-reference" href="#id4" id="id2">[2]</a> for more information</p>
 <table class="docutils footnote" frame="void" id="id3" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -220,7 +221,7 @@ py36 with your python3 version)</p>
 <p>This sends the recorded variable to a ZeroMQ Queue, but otherwise is very low overhead and doesn’t affect your
 simulation, even if you decide not to do live plotting for any particular run.</p>
 <p>After the simulation is finished, call <code class="code docutils literal"><span class="pre">plot_recorder.close('x_sq')</span></code> to do a clean shutdown.</p>
-<p>To actually do liv plotting, you would implement a <code class="code docutils literal"><span class="pre">Plotter</span></code> in a different file that inherits from <code class="code docutils literal"><span class="pre">PlotterBase</span></code>
+<p>To actually do live plotting, you would implement a <code class="code docutils literal"><span class="pre">Plotter</span></code> in a different file that inherits from <code class="code docutils literal"><span class="pre">PlotterBase</span></code>
 as follows:</p>
 <div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">YourPlotter</span><span class="p">(</span><span class="n">PlotterBase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_name</span><span class="p">):</span>
@@ -245,7 +246,7 @@ as follows:</p>
         <span class="c1"># Plot the variable and return a matplotlib.artist.Artist object</span>
 </pre></div>
 </div>
-<p>and start it with:</p>
+<p>And start it with:</p>
 <div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">YourPlotter</span><span class="p">(</span><span class="s1">&#39;x_sq&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
