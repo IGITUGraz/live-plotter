@@ -96,6 +96,7 @@ To actually do live plotting, you would implement a :code:`Plotter` in a differe
 as follows:
 
 .. code:: python
+
     from liveplotter.plotrecorder import PlotterBase
     
     class YourPlotter(PlotterBase):
