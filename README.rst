@@ -96,25 +96,25 @@ To actually do live plotting, you would implement a :code:`Plotter` in a differe
 as follows:
 
 .. code:: python
-
+    from liveplotter.plotrecorder import PlotterBase
+    
     class YourPlotter(PlotterBase):
-        def init(self, var_name):
+        def init(self):
             # Make sure you call the super `init` method. This initializes `self.plt`
-            super().init(var_name)
+            super().init()
 
             logger.info("First initializing plots in thread %s", self.entity_name)
             # It is necessary to assign the variable `self.fig` in this init function
 
-            self.fig = self.plt.figure()
+            self.fig, self.ax = self.plt.subplots()
 
             # Your initialization code here
             ...
-            self.var_list = []
 
             return self
 
         def plot_loop(self, var_value, i):
-            # Implements the plotting loop. In this case, it just returns the outcome of `plt.imshow`
+            # Implements the plotting loop.
             logger.debug("Plotting %s in %s", self.var_name, self.entity_name)
 
             # Plot the variable and return a matplotlib.artist.Artist object
