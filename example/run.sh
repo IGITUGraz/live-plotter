@@ -9,4 +9,5 @@
 export PYTHONPATH=..:$PYTHONPATH
 
 python -u plot.py &
+sleep 5
 python -u simulation.py &

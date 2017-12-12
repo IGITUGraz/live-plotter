@@ -32,6 +32,12 @@ Installation
     pip install -r requirements.txt
     python setup.py install
 
+You can also do:
+
+.. code:: bash
+
+    pip install --process-dependency-links git+https://github.com/anandtrex/live-plotter.git
+
 
 Notes about backends
 ********************
@@ -68,6 +74,9 @@ See [#]_ and [#]_ for more information
 Usage
 *****
 
+Record data to be plotted
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
 It consists of two parts: a :code:`PlotRecorder` and a :code:`Plotter`.
 
 For any code you have, you can record the values that you want to plot using the :code:`PlotRecorder` as follows:
@@ -92,7 +101,23 @@ simulation, even if you decide not to do live plotting for any particular run.
 
 After the simulation is finished, call :code:`plot_recorder.close('x_sq')` to do a clean shutdown.
 
-To actually do live plotting, you would implement a :code:`Plotter` in a different file that inherits from :code:`PlotterBase`
+
+Set up live plotting
+~~~~~~~~~~~~~~~~~~~~
+
+To actually do live plotting, you can do one of two things:
+
+Use one of the existing live plot classes
++++++++++++++++++++++++++++++++++++++++++
+
+There are plotting methods available for single lines, multiple lines, images and spikes. Look at the documentation
+in the classes in :code:`liveplotter.plotter_impls.py` in the `documentation <https://anandtrex.github.io/live-plotter/liveplotter.html>`_
+
+Write your own live plot class
+++++++++++++++++++++++++++++++
+
+
+would implement a :code:`Plotter` in a different file that inherits from :code:`PlotterBase`
 as follows:
 
 .. code:: python
@@ -142,3 +167,20 @@ The animation will look like this:
 
 .. image:: _static/animation.gif
 
+Building documentation locally
+******************************
+
+After cloning the repository, go to the doc directory and first install the documentation requirements with
+
+.. code:: bash
+
+    cd doc
+    pip install -r requirements.txt  # use pip3 for python3
+
+Then run:
+
+.. code:: bash
+
+    make html
+
+and open the documentation at :code:`doc/build/html/index.html`

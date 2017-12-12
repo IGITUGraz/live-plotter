@@ -16,3 +16,6 @@
 # along with live-plotter.  If not, see <http://www.gnu.org/licenses/>.
 #
 # For more information see: https://github.com/anandtrex/live-plotter
+
+PORT = 5155
+SENTINEL = 'SENTINEL'
