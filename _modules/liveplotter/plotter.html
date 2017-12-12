@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>liveplotter.plotter &#8212; Live Plotter 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          Live Plotter</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Live Plotter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../liveplotter.html">live-plotter API Reference</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for liveplotter.plotter</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># This file is part of live-plotter.</span>
+<span class="c1">#</span>
+<span class="c1"># live-plotter is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># live-plotter is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with live-plotter.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="c1"># For more information see: https://github.com/anandtrex/live-plotter</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">unicode_literals</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">builtins</span> <span class="k">import</span> <span class="nb">super</span>
+<span class="kn">from</span> <span class="nn">future</span> <span class="k">import</span> <span class="n">standard_library</span>
+
+<span class="n">standard_library</span><span class="o">.</span><span class="n">install_aliases</span><span class="p">()</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">current_process</span>
+
+<span class="kn">import</span> <span class="nn">zmq</span>
+<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
+
+<span class="kn">from</span> <span class="nn">liveplotter</span> <span class="k">import</span> <span class="n">PORT</span><span class="p">,</span> <span class="n">SENTINEL</span>
+
+<span class="n">plogger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;liveplotter.plotter&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PlotterBase"><a class="viewcode-back" href="../../liveplotter.html#liveplotter.plotter.PlotterBase">[docs]</a><span class="k">class</span> <span class="nc">PlotterBase</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a ZMQ subscriber.</span>
+<span class="sd">    To implement your own plotters, use this as your base class and implement functions :meth:`.plot_loop` and</span>
+<span class="sd">    :meth:`plot_once` as described in their respective documentation</span>
+
+<span class="sd">    See provided implementations below in :mod:`liveplotter.plotter_impls`</span>
+
+<span class="sd">    :param var_name: The name of the variable this class plots. This should match the variable name recorded by the</span>
+<span class="sd">     class:`.PlotRecorder` class.</span>
+<span class="sd">    :param int port: The port number to subscribe to data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_name</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">PORT</span><span class="p">,</span> <span class="o">**</span><span class="n">init_kwargs</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exit</span> <span class="o">=</span> <span class="n">Event</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">var_name</span> <span class="o">=</span> <span class="n">var_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entity_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plt</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_kwargs</span> <span class="o">=</span> <span class="n">init_kwargs</span>
+
+<div class="viewcode-block" id="PlotterBase.init"><a class="viewcode-back" href="../../liveplotter.html#liveplotter.plotter.PlotterBase.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method is called after a new process has been created, and should be used to initialize everything that</span>
+<span class="sd">        needs to be initialized in the new process (i.e. after the fork).</span>
+<span class="sd">        Override this method to create fig, ax etc. as needed</span>
+
+<span class="sd">        **NOTE:** This method SHOULD assign the created figure to the class variable `self.fig`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">plogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Calling init of base class&quot;</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plt</span> <span class="o">=</span> <span class="n">plt</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="PlotterBase.run"><a class="viewcode-back" href="../../liveplotter.html#liveplotter.plotter.PlotterBase.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Entry point for the live plotting when started as a separate process. This starts the loop</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entity_name</span> <span class="o">=</span> <span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">plogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting new thread </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">entity_name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">context</span> <span class="o">=</span> <span class="n">zmq</span><span class="o">.</span><span class="n">Context</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">zmq</span><span class="o">.</span><span class="n">SUB</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;tcp://localhost:</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+        <span class="n">topic</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var_name</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">zmq</span><span class="o">.</span><span class="n">SUBSCRIBE</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span>
+        <span class="n">plogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Subscribed to topic </span><span class="si">%s</span><span class="s2"> on port </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">init_kwargs</span><span class="p">)</span>
+        <span class="c1"># Reference to animation required so that GC doesn&#39;t clean it up.</span>
+        <span class="c1"># WILL NOT work if you remove it!!!!!</span>
+        <span class="c1"># See: http://matplotlib.org/api/animation_api.html</span>
+        <span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PlotterBase.loop"><a class="viewcode-back" href="../../liveplotter.html#liveplotter.plotter.PlotterBase.loop">[docs]</a>    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function that runs the loop. At each call, it listens for a new message of the appropriate topic/var_name</span>
+<span class="sd">        (given in the constructor). When it receives the message, it calls :meth:`.plot_loop`</span>
+
+<span class="sd">        :param int i: The plot iteration passed in by the matplotlib animation api call</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exit</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+            <span class="n">plogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">var_value</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">recv_multipart</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">plogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received value&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var_value</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">SENTINEL</span><span class="p">))</span> <span class="ow">and</span> <span class="n">var_value</span> <span class="o">==</span> <span class="n">SENTINEL</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_exit</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_loop</span><span class="p">(</span><span class="n">var_value</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PlotterBase.plot_loop"><a class="viewcode-back" href="../../liveplotter.html#liveplotter.plotter.PlotterBase.plot_loop">[docs]</a>    <span class="k">def</span> <span class="nf">plot_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_value</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method is called each time the plot needs to be updated. This should return an iterable of matplotlib</span>
+<span class="sd">        :class:`matplotlib.artist.Artist`</span>
+
+<span class="sd">        **NOTE:** This method should only use the local variables `self.plt` and `self.fig` etc. for plotting. Do not use</span>
+<span class="sd">        global variables, since this can cause problems due to the multiprocessing being used (and matplotlib&#39;s limited</span>
+<span class="sd">        support for it)</span>
+
+<span class="sd">        :param object var_value: The value of the object recorded using the :meth:`.PlotRecorder.record` call.</span>
+<span class="sd">        :param int i: The iteration number of the plot</span>
+<span class="sd">        :return: An iterable of :class:`matplotlib.artist.Artist`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2017, Anand S.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
