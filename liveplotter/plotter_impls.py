@@ -100,7 +100,7 @@ class GeneralPlotter(PlotterBase):
             logger.error("Data is %s", data)
             raise RuntimeError()
 
-        assert len(var) == 0, "The passed in variable should be a scalar"
+        assert len(var.shape) == 0, "The passed in variable should be a scalar"
 
         self.variable_list.append(var)
         self.xs.append(x)
@@ -331,7 +331,7 @@ class SpikePlotter(PlotterBase):
         if it == 0 and self.lines == []:
             n_y = len(spikes)
             for _ in range(n_y):
-                l, = self.ax.plot([], [], linestyle='.', **self.plot_kwargs)
+                l, = self.ax.plot([], [], marker='.', linestyle='none', color='b', **self.plot_kwargs)
                 self.lines.append(l)
             self.ax.set_ylim(1, len(spikes) + 1)
             self.ax.yaxis.set_major_locator(FixedLocator([0, len(spikes) + 1]))
