@@ -5,7 +5,7 @@ Live Plotter
 
 
 
-This package provides a simple interface to do live plotting using matplotlib.
+This package provides a simple interface to do live plotting and realtime plotting using matplotlib.
 
 Detailed documentation here:
 https://anandtrex.github.io/live-plotter/
