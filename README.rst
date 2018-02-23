@@ -24,6 +24,7 @@ Installation
 ************
 
 .. code:: bash
+
     # Use pip3 and python3 to use Python 3.x
     pip install --process-dependency-links https://github.com/IGITUGraz/live-plotter/archive/master.zip
 
