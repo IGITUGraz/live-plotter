@@ -7,8 +7,7 @@ Live Plotter
 
 This package provides a simple interface to do live plotting and realtime plotting using matplotlib.
 
-Detailed documentation here:
-https://anandtrex.github.io/live-plotter/
+Detailed documentation here: https://igitugraz.github.io/live-plotter/
 
 Supports Python 2.7+ and Python 3.2+
 
@@ -25,19 +24,18 @@ Installation
 ************
 
 .. code:: bash
+    # Use pip3 and python3 to use Python 3.x
+    pip install --process-dependency-links https://github.com/IGITUGraz/live-plotter/archive/master.zip
+
+You can also install by cloning the repository:
+
+.. code:: bash
 
     git clone git@github.com:IGITUGraz/live-plotter.git
     cd live-plotter
     # Use pip3 and python3 to use Python 3.x
     pip install -r requirements.txt
     python setup.py install
-
-You can also do:
-
-.. code:: bash
-
-    pip install --process-dependency-links git+https://github.com/anandtrex/live-plotter.git
-
 
 Notes about backends
 ********************
