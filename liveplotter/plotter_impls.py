@@ -333,7 +333,7 @@ class SpikePlotter(PlotterBase):
             for _ in range(n_y):
                 l, = self.ax.plot([], [], marker='.', linestyle='none', color='b', **self.plot_kwargs)
                 self.lines.append(l)
-            self.ax.set_ylim(1, len(spikes) + 1)
+            self.ax.set_ylim(0, len(spikes) + 1)
             self.ax.yaxis.set_major_locator(FixedLocator([0, len(spikes) + 1]))
 
         if it > 0 and it % self.plot_frequency == 0:
