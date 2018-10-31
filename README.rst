@@ -110,7 +110,7 @@ Use one of the existing live plot classes
 +++++++++++++++++++++++++++++++++++++++++
 
 There are plotting methods available for single lines, multiple lines, images and spikes. Look at the documentation
-in the classes in :code:`liveplotter.plotter_impls.py` in the `documentation <https://anandtrex.github.io/live-plotter/liveplotter.html>`_
+in the classes in :code:`liveplotter.plotter_impls.py` in the `documentation <https://igitugraz.github.io/live-plotter/liveplotter.html>`_
 
 Write your own live plot class
 ++++++++++++++++++++++++++++++
